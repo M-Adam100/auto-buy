@@ -1,0 +1,37 @@
+{
+	"name": "Auto Buy",
+	"version": "1.0",
+	"description": "",
+	"manifest_version": 3,
+	"incognito": "split",
+	"icons": {
+		"128": "icons/128.png"
+	},
+	"action": {
+		"default_icon": "icons/128.png",
+		"default_popup": "popup/popup.html"
+	  },
+	"background": {
+		"service_worker": "background.js"
+	},
+	"permissions": [
+		"storage",
+		"tabs",
+		"activeTab",
+		"scripting"
+	],
+	"web_accessible_resources": [
+		{
+		  "matches": [
+			"https://store.steampowered.com/*"
+		  ],
+		  "resources": [
+			"scripts/test.js"
+		  ]
+		}
+	  ],
+	"host_permissions": [
+		"https://store.steampowered.com/*"
+	]
+}
+
