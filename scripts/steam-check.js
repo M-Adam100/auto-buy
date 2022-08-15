@@ -72,11 +72,17 @@ console.log("Running Script");
 
       console.log(game.querySelector('.ds_flag ds_incart_flag'))
 
-      if (game.querySelector('.ds_flag.ds_incart_flag')) {
+      if (game.querySelector('.ds_flag.ds_incart_flag') || game.querySelector('.ds_flag.ds_owned_flag')) {
         buyGame();
       } else {
-        const currency = game.querySelector('.col.search_price').innerText;
-        const gamePrice = Number(currency.replace(/[^0-9.-]+/g,""));
+      let currency = game.querySelector('.col.search_price').innerText;
+      currency = currency.replace(',', '.');
+       let gamePrice = currency;
+        if (currency.includes('\n')) {
+          gamePrice = currency.split('\n')[1];
+          gamePrice = Number(gamePrice.replace(/[^0-9.-]+/g,""));
+        } else gamePrice = Number(gamePrice.replace(/[^0-9.-]+/g,"")); 
+       
     
         if (gamePrice <= amount) {
           console.log(game.querySelector('.title').innerText,  "  ADDING TO CART!");
